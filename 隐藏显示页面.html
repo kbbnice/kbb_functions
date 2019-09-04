@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试隐藏显示</title>
+</head>
+
+<body>
+    <script>
+        function ifPageHide() {
+
+            let titleTag = document.getElementsByTagName('title')[0]
+
+            // 初始保留原始title
+            let defaultTitle = titleTag.innerHTML
+
+            // 当页面隐藏/显示时会触发visibilitychange事件，执行修改title操作：
+            document.addEventListener('visibilitychange', function() {
+
+                // 
+                console.log(document.visibilityState) // 输出： hidden 和 visible
+                let state = document.visibilityState
+                if (state === 'hidden') {
+                    titleTag.innerHTML = '\(^o^)/~我藏起来了'
+                } else {
+                    titleTag.innerHTML = '(*^▽^*)我又回来了'
+                    setTimeout(() => {
+                        titleTag.innerHTML = defaultTitle
+                    }, 3000);
+                }
+            })
+        }
+        ifPageHide()
+    </script>
+</body>
+
+</html>
